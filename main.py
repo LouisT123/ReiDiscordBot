@@ -17,6 +17,10 @@ async def on_message(message):
   
   if message.content.startswith('~hey rei'):
     await message.channel.send('Hey!')
+  
+  if message.content.startswith('~rei you seeing this shit?'):
+    await message.channel.send('<:ReiStare:887162572963475506>')
+  
 keep_alive()
 client.run(os.environ['TOKEN'])
 
