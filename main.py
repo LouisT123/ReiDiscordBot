@@ -14,7 +14,8 @@ async def on_message(message):
   #if bot message, ignore
   if message.author == client.user:
     return
-  
+  if message.content == "welcome":
+    await message.channel.send('<:hiya:807336709993529374>')
   if message.content.startswith('~hey rei'):
     await message.channel.send('Hey!')
   
