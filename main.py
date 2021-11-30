@@ -14,14 +14,19 @@ async def on_message(message):
   #if bot message, ignore
   if message.author == client.user:
     return
-  if message.content == "welcome":
+  #if message contains welcome in it, say hi! 
+  if 'welcome' in message.content:
     await message.channel.send('<:hiya:807336709993529374>')
   if message.content.startswith('~hey rei'):
     await message.channel.send('Hey!')
-  
-  if message.content.startswith('~rei you seeing this shit?'):
+  if "rei you seeing this shit?" in message.content:
     await message.channel.send('<:ReiStare:887162572963475506>')
-  
+  #if message.content.startswith('~rei you seeing this shit?'):
+    #await message.channel.send('<:ReiStare:887162572963475506>')
+  if "hey rei, get me the event schedule" in message.content:
+    await message.channel.send("here you go! https://kenofnz.github.io/priconne-en-event-timer/")
+  #if "hey rei, flip a coin" in message.content:
+    
 keep_alive()
 client.run(os.environ['TOKEN'])
 
