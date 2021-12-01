@@ -26,7 +26,7 @@ async def on_message(message):
   if "hey rei, get me the event schedule" in message.content:
     await message.channel.send("here you go! https://kenofnz.github.io/priconne-en-event-timer/")
   if "hey rei, get me the ue spreadsheet" in message.content:
-    await message.channel.send("here you go! https://docs.google.com/spreadsheets/d/1uwKPDap5K5e891ZB0-hubQqsol-OH7yiU2GQfwj7LCg/edit#gid=1345108943")
+    await message.channel.send("here you go! https://docs.google.com/spreadsheets/d/1JXbzIF4dWqzmmBwAxuNp74_v8eSM0tuDehWZtN9-lxY/edit#gid=504351475")
   #if "hey rei, flip a coin" in message.content:
     
 keep_alive()
