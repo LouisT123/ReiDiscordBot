@@ -32,8 +32,10 @@ async def on_message(message):
     await message.channel.send("here you go! https://docs.google.com/spreadsheets/d/1JXbzIF4dWqzmmBwAxuNp74_v8eSM0tuDehWZtN9-lxY/edit#gid=504351475")
 
   if "rei flip a coin" in message.content.lower():
-    outcome = ["You flipped: tails", "You flipped: heads"]
-    await message.channel.send(random.choice(outcome))
+    outcome = ["tails", "heads"]
+    await message.channel.send(message.author.mention + " I flipped: " + random.choice(outcome))
+  if message.content.lower() == "i give up":
+    await message.channel.send(message.author.mention + ", you're getting stronger and stronger. It looks like you're not nearly at your limit yet... Prove to me that it's true. <:ugotthis:791813802433183784>")
 
 keep_alive()
 client.run(os.environ['TOKEN'])
