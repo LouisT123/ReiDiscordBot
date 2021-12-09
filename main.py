@@ -1,16 +1,14 @@
 import discord
 import os
 from keep_alive import keep_alive
-#for coin Flip 
 import random
-from random import choice
 
 client = discord.Client()
 
 @client.event
 async def on_ready():
   print('we have logged in as {0.user}'.format(client))
-  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=": U - Millenium Parade"))
+  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=": hey rei"))
 
 #if message is recieved
 @client.event
@@ -33,18 +31,10 @@ async def on_message(message):
   if "hey rei, get me the ue spreadsheet" in message.content.lower():
     await message.channel.send("here you go! https://docs.google.com/spreadsheets/d/1JXbzIF4dWqzmmBwAxuNp74_v8eSM0tuDehWZtN9-lxY/edit#gid=504351475")
 
-  #if "hey rei, flip a coin" in message.content.lower():
-'''async def coinflip(message):
-  heads_tails = [1,0];
-  if random.choice(heads_tails) == 1:
-    embed = discord.Embed(title="Rei bot tosses a coin", description=f"{message.author.mention} Flipped coin, we got **Heads**!")
-        await message.send(embed=embed)
-  else:
-    embed = discord.Embed(title="Rei bot tosses a coin", description=f"{message.author.mention} Flipped coin, we got **Heads**!")
-        await message.send(embed=embed)
-        '''
+  if "rei flip a coin" in message.content.lower():
+    outcome = ["You flipped: tails", "You flipped: heads"]
+    await message.channel.send(random.choice(outcome))
 
-    
 keep_alive()
 client.run(os.environ['TOKEN'])
 
