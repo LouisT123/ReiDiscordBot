@@ -8,6 +8,8 @@ authors = ["LouisT123 <<>>"]
 python = "^3.8"
 discord = "^1.7.3"
 Flask = "^2.0.2"
+pycrypto = "^2.6.1"
+python-dateutil = "^2.8.2"
 
 [tool.poetry.dev-dependencies]
 
