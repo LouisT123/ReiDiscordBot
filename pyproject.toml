@@ -10,6 +10,8 @@ discord = "^1.7.3"
 Flask = "^2.0.2"
 pycrypto = "^2.6.1"
 python-dateutil = "^2.8.2"
+config = "^0.5.1"
+notification = "^0.2.1"
 
 [tool.poetry.dev-dependencies]
 

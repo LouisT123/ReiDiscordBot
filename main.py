@@ -2,23 +2,19 @@ import discord
 import os
 from keep_alive import keep_alive
 import random
-#notification bot
-from notification import Notification
-from config import CONFIG
 client = discord.Client()
+from notification import Notification 
 
-def __init__(client):
-        client.CONFIG = CONFIG
-        client.notification = Notification(client)
+notif = Notification(client, 785705961032515614)
 
 @client.event
 async def on_ready():
   print('we have logged in as {0.user}'.format(client))
   await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=": hey rei"))
+  notif.start()
 
 #if message is recieved
 @client.event
-
 async def on_message(message):
   #if bot message, ignore
   if message.author == client.user:

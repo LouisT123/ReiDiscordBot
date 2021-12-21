@@ -6,7 +6,6 @@ import codecs
 from Crypto.Util import Counter
 import json
 from dateutil import tz
-from keep_alive import keep_alive
 
 # https://stackoverflow.com/questions/12524994/encrypt-decrypt-using-pycrypto-aes-256
 # https://github.com/beenotung/compress-json
@@ -151,13 +150,14 @@ class JSONDecompressor:
         return self.decode(values, root)
 
 class Notification:
-    def __init__(self, client):
+    def __init__(self, client, channel_id):
         self.client = client
-        self.channel_id = self.client.config.get("notification_channelid", None)
+        self.channel_id = channel_id
         self.httpsession = aiohttp.ClientSession()
         self.decompressor = JSONDecompressor()
 
-        self.bg_task = self.client.loop.create_task(self.background_task())
+    def start(self):
+      self.bg_task = self.client.loop.create_task(self.background_task())
 
     async def background_task(self):
         await self.client.wait_until_ready()
@@ -230,4 +230,3 @@ class Notification:
             channel = self.client.get_channel(self.channel_id)
             if channel:
                 await channel.send(output)
-keep_alive()
