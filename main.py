@@ -2,8 +2,14 @@ import discord
 import os
 from keep_alive import keep_alive
 import random
-
+#notification bot
+from notification import Notification
+from config import CONFIG
 client = discord.Client()
+
+def __init__(client):
+        client.CONFIG = CONFIG
+        client.notification = Notification(client)
 
 @client.event
 async def on_ready():
