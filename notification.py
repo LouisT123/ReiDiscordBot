@@ -6,6 +6,7 @@ import codecs
 from Crypto.Util import Counter
 import json
 from dateutil import tz
+from keep_alive import keep_alive
 
 # https://stackoverflow.com/questions/12524994/encrypt-decrypt-using-pycrypto-aes-256
 # https://github.com/beenotung/compress-json
@@ -148,7 +149,7 @@ class JSONDecompressor:
     def decompress(self, c):
         values, root = c
         return self.decode(values, root)
-
+keep_alive()
 class Notification:
     def __init__(self, client, channel_id):
         self.client = client
@@ -230,3 +231,4 @@ class Notification:
             channel = self.client.get_channel(self.channel_id)
             if channel:
                 await channel.send(output)
+keep_alive()
