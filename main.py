@@ -13,6 +13,8 @@ async def on_ready():
   await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=": hey rei"))
   notif.start()
 
+
+
 #if message is recieved
 @client.event
 async def on_message(message):
@@ -38,8 +40,12 @@ async def on_message(message):
     await message.channel.send(message.author.mention + " I flipped: " + random.choice(outcome))
   if message.content.lower() == "i give up":
     await message.channel.send(message.author.mention + ", you're getting stronger and stronger. It looks like you're not nearly at your limit yet... Prove to me that it's true. <:ugotthis:791813802433183784>")
+  #ping test code (working)
+  if message.content.startswith("pingtestAdmin"):
+    await message.channel.send("<@&785703424565051432>, test succeeded")
 
 keep_alive()
 client.run(os.environ['TOKEN'])
+client2.run(os.environ['TOKEN'])
 
 
