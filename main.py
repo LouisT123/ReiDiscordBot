@@ -4,15 +4,16 @@ from keep_alive import keep_alive
 import random
 client = discord.Client()
 from notification import Notification 
-
-notif = Notification(client, 785705961032515614)
+#notification bot, takes in chat id and client
+notif = Notification(client, 785705961032515614 )
+#test 912532987671900180
+#actual 785705961032515614
 
 @client.event
 async def on_ready():
   print('we have logged in as {0.user}'.format(client))
-  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=": hey rei"))
+  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=": ~commands"))
   notif.start()
-
 
 
 #if message is recieved
@@ -30,9 +31,9 @@ async def on_message(message):
     await message.channel.send('<:ReiStare:887162572963475506>')
   #if message.content.startswith('~rei you seeing this shit?'):
     #await message.channel.send('<:ReiStare:887162572963475506>')
-  if "hey rei, get me the event schedule" in message.content.lower():
+  if "hey rei get me the event schedule" in message.content.lower():
     await message.channel.send("here you go! https://kenofnz.github.io/priconne-en-event-timer/")
-  if "hey rei, get me the ue spreadsheet" in message.content.lower():
+  if "hey rei get me the ue spreadsheet" in message.content.lower():
     await message.channel.send("here you go! https://docs.google.com/spreadsheets/d/1JXbzIF4dWqzmmBwAxuNp74_v8eSM0tuDehWZtN9-lxY/edit#gid=504351475")
 
   if "rei flip a coin" in message.content.lower():
@@ -44,8 +45,11 @@ async def on_message(message):
   if message.content.startswith("pingtestAdmin"):
     await message.channel.send("<@&785703424565051432>, test succeeded")
 
+  if message.content.startswith("~commands"):
+    await message.channel.send("Here are my commands!\nrei flip a coin\nhey rei get me the event schedule\nhey rei get me the ue spreadsheet\nrei you seeing this shit?" )
+
 keep_alive()
 client.run(os.environ['TOKEN'])
-client2.run(os.environ['TOKEN'])
+
 
 

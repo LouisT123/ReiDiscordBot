@@ -168,9 +168,11 @@ class Notification:
             wait = 60 - utc.second + 5
         else:
             wait = 5 - utc.second
+        #comment out 172 to test ping
         await asyncio.sleep(wait)
         while not self.client.is_closed():
             utc = datetime.datetime.utcnow()
+            #change 176 from if utc.hour == 13 and to: if true or ... for testing 
             if utc.hour == 13 and utc.minute == 0:
                 await self.run_reminders()
                 await asyncio.sleep(120)
@@ -201,7 +203,7 @@ class Notification:
     async def run_reminders(self):
         events = await self.fetch_events()
         utc = datetime.datetime.utcnow()
-        output = "**Princess Connect Schedule**"
+        output = "<@&785703424565051432> <@&800961943212523521> <@&850285286742294529> <@&785702929981112361> <@&800962811894300712> **Princess Connect Schedule Update!** <:ReiShock:887162638155518023> "
         starting_events = []
         ending_events = []
         for event in events:
