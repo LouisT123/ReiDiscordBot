@@ -203,7 +203,7 @@ class Notification:
     async def run_reminders(self):
         events = await self.fetch_events()
         utc = datetime.datetime.utcnow()
-        output = "<@&785703424565051432> <@&800961943212523521> <@&850285286742294529> <@&785702929981112361> <@&800962811894300712> **Princess Connect Schedule Update!** <:ReiShock:887162638155518023> "
+        output = "<@&785703424565051432> <@&800961943212523521> <@&850285286742294529> <@&785702929981112361> <@&800962811894300712> <:ReiShock:887162638155518023> Princess Connect Schedule "
         starting_events = []
         ending_events = []
         for event in events:
@@ -213,19 +213,24 @@ class Notification:
             start_time.replace(tzinfo=tz.tzutc())
             end_time = datetime.datetime.strptime(event["end_time"], '%Y/%m/%d %H:%M:%S')
             end_time.replace(tzinfo=tz.tzutc())
-            if start_time > utc - datetime.timedelta(hours=1) and start_time < utc + datetime.timedelta(hours=23):
+
+            #changed 23 to 46 hours for next day notiification
+            if start_time > utc - datetime.timedelta(hours=1) and start_time < utc + datetime.timedelta(hours=46):
                 # "StartDate > DATE_SUB(NOW(), INTERVAL 1 HOUR) AND StartDate < DATE_ADD(NOW(), INTERVAL 23 HOUR)"
                 starting_events.append(event)
-            elif end_time < utc + datetime.timedelta(hours=24) and end_time > utc and end_time - start_time > datetime.timedelta(hours=1):
+
+            #changed 24 to 48 hours for next day reminders for next day notification
+            elif end_time < utc + datetime.timedelta(hours=48) and end_time > utc and end_time - start_time > datetime.timedelta(hours=1):
                 # "EndDate < DATE_ADD(NOW(), INTERVAL 1 DAY) AND EndDate > NOW()"
                 ending_events.append(event)
         if len(starting_events):
-            output = output + "\n__Events Starting Today:__"
+
+            output = output + "\n__Events **Starting Tomorrow**:__"
             for event in starting_events:
                 output = output + "\n{}".format(event["event_name"])
             output = output + "\n"
         if len(ending_events):
-            output = output + "\n__Events Ending Today:__"
+            output = output + "\n__Events **Ending Tomorrow**:__"
             for event in ending_events:
                 output = output + "\n{}".format(event["event_name"])
             output = output + "\n"
