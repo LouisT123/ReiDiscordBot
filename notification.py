@@ -169,12 +169,12 @@ class Notification:
         else:
             wait = 5 - utc.second
         #comment out 172 to test ping without delay
-        await asyncio.sleep(wait)
+        #await asyncio.sleep(wait)
         while not self.client.is_closed():
             utc = datetime.datetime.utcnow()
 
             #change 176 from if utc.hour == 13 and to: if True or ... for testing 
-            if utc.hour == 13 and utc.minute == 0:
+            if True or utc.minute == 0:
                 await self.run_reminders()
                 await asyncio.sleep(120)
             await asyncio.sleep(30)
@@ -216,23 +216,24 @@ class Notification:
             end_time = datetime.datetime.strptime(event["end_time"], '%Y/%m/%d %H:%M:%S')
             end_time.replace(tzinfo=tz.tzutc())
 
-            #changed 23 to 47 hours and 1 to 24 for next day only notification
-            if start_time > utc + datetime.timedelta(hours=25) and start_time < utc + datetime.timedelta(hours=47):
+            #changed 1 to 24 hours and 23 to 46 for next day only notification
+            #original 
+            if start_time > utc + datetime.timedelta(hours=23) and start_time < utc + datetime.timedelta(hours=25):
                 # "StartDate > DATE_SUB(NOW(), INTERVAL 1 HOUR) AND StartDate < DATE_ADD(NOW(), INTERVAL 23 HOUR)"
                 starting_events.append(event)
 
-            #changed 24 to 48 hours and 1 to 24 for next day reminders for next day notification
-            elif end_time < utc + datetime.timedelta(hours=48) and end_time > utc and end_time - start_time > datetime.timedelta(hours=24):
+          
+            elif end_time < utc + datetime.timedelta(hours=24) and end_time > utc and end_time - start_time > datetime.timedelta(hours=1):
                 # "EndDate < DATE_ADD(NOW(), INTERVAL 1 DAY) AND EndDate > NOW()"
                 ending_events.append(event)
         if len(starting_events):
 
-            output = output + "\n__Events **Starting Tomorrow**:__"
+            output = output + "\n__Events **Starting in 24 hours**:__"
             for event in starting_events:
                 output = output + "\n{}".format(event["event_name"])
             output = output + "\n"
         if len(ending_events):
-            output = output + "\n__Events **Ending Tomorrow**:__"
+            output = output + "\n__Events **Ending in 24 hours**:__"
             for event in ending_events:
                 output = output + "\n{}".format(event["event_name"])
             output = output + "\n"
