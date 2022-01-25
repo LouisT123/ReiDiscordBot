@@ -218,7 +218,7 @@ class Notification:
 
             #changed 1 to 24 hours and 23 to 46 for next day only notification
             #original 
-            if start_time > utc + datetime.timedelta(hours=23) and start_time < utc + datetime.timedelta(hours=25):
+            if start_time > utc + datetime.timedelta(hours=23) and start_time < utc + datetime.timedelta(hours=47):
                 # "StartDate > DATE_SUB(NOW(), INTERVAL 1 HOUR) AND StartDate < DATE_ADD(NOW(), INTERVAL 23 HOUR)"
                 starting_events.append(event)
 
