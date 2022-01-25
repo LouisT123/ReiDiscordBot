@@ -169,12 +169,12 @@ class Notification:
         else:
             wait = 5 - utc.second
         #comment out 172 to test ping without delay
-        #await asyncio.sleep(wait)
+        await asyncio.sleep(wait)
         while not self.client.is_closed():
             utc = datetime.datetime.utcnow()
 
             #change 176 from if utc.hour == 13 and to: if True or ... for testing 
-            if True or utc.minute == 0:
+            if utc.hour == 13 and utc.minute == 0:
                 await self.run_reminders()
                 await asyncio.sleep(120)
             await asyncio.sleep(30)

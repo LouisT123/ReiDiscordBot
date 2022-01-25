@@ -5,7 +5,7 @@ import random
 client = discord.Client()
 from notification import Notification 
 #notification bot, takes in chat id and client
-notif = Notification(client, 791804582442434590 )
+notif = Notification(client, 785705961032515614 )
 #test 912532987671900180
 #test2 791804582442434590
 #actual 785705961032515614
