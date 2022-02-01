@@ -233,7 +233,7 @@ class Notification:
                 output = output + "\n{}".format(event["event_name"])
             output = output + "\n"
         if len(ending_events):
-            output = output + "\n__Events **Ending in 24 hours**:__"
+            output = output + "\n__Events **Ending today**:__"
             for event in ending_events:
                 output = output + "\n{}".format(event["event_name"])
             output = output + "\n"
