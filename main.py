@@ -1,7 +1,8 @@
 import discord
 import os
-from keep_alive import keep_alive
+#from keep_alive import keep_alive
 import random
+from dotenv import load_dotenv
 client = discord.Client()
 from notification import Notification 
 #notification bot, takes in chat id and client
@@ -9,6 +10,8 @@ notif = Notification(client, 785705961032515614 )
 #test 912532987671900180
 #test2 791804582442434590
 #actual 785705961032515614
+
+load_dotenv()
 
 @client.event
 async def on_ready():
@@ -53,7 +56,7 @@ async def on_message(message):
   if message.content.startswith("~commands"):
     await message.channel.send("Here are my commands!\nrei flip a coin\nhey rei get me the event schedule\nhey rei get me the ue guide\nhey rei get me the luna tower guide\nhey rei get me the gear guide\nguides will always be up to date\nrei you seeing this shit?" )
 
-keep_alive()
+#keep_alive()
 client.run(os.environ['TOKEN'])
 
 
