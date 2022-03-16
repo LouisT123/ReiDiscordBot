@@ -1,3 +1,4 @@
+from email import message
 import discord
 import os
 #from keep_alive import keep_alive
@@ -74,11 +75,11 @@ async def on_raw_reaction_add(payload):
     #get role
     if payload.emoji.name == 'yabaidesune':
       role = discord.utils.get(guild.roles, name='b1')
-    elif payload.emoji.name == 'kyaru':
+    elif payload.emoji.name == 'OxO':
       role = discord.utils.get(guild.roles, name='b2')
-    elif payload.emoji.name == 'disturbed':
+    elif payload.emoji.name == 'KyoukaPout':
       role = discord.utils.get(guild.roles, name='b3')
-    elif payload.emoji.name == 'criyaru':
+    elif payload.emoji.name == 'SarenWah':
       role = discord.utils.get(guild.roles, name='b4')
     elif payload.emoji.name == 'yamete':
       role = discord.utils.get(guild.roles, name='b5')
@@ -111,11 +112,11 @@ async def on_raw_reaction_remove(payload):
     #get role
     if payload.emoji.name == 'yabaidesune':
       role = discord.utils.get(guild.roles, name='b1')
-    elif payload.emoji.name == 'kyaru':
+    elif payload.emoji.name == 'OxO':
       role = discord.utils.get(guild.roles, name='b2')
-    elif payload.emoji.name == 'disturbed':
+    elif payload.emoji.name == 'KyoukaPout':
       role = discord.utils.get(guild.roles, name='b3')
-    elif payload.emoji.name == 'criyaru':
+    elif payload.emoji.name == 'SarenWah':
       role = discord.utils.get(guild.roles, name='b4')
     elif payload.emoji.name == 'yamete':
       role = discord.utils.get(guild.roles, name='b5')
@@ -133,6 +134,15 @@ async def on_raw_reaction_remove(payload):
         print("member not found")
     else:
       print("Role not found")
+
+'''@client.event
+async def emoji(payload):
+  message_id = payload.message_id
+  if message_id == 953428332530245632:
+    await message.add_reaction('yabaidesune')
+'''
+
+
 
 #keep_alive()
 
